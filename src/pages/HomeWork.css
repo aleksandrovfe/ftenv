@@ -4,10 +4,13 @@
     margin: 0 auto;
     position: relative;
     z-index: 2; /* поверх фона */
+    overflow-x: auto; /* Включаем горизонтальный скролл при необходимости */
+    -webkit-overflow-scrolling: touch;
 }
 
 .hw-table {
     width: 100%;
+    min-width: 600px;
     border-collapse: collapse;
     background: rgba(255, 255, 255, 0.04); /* полупрозрачность */
     backdrop-filter: blur(12px) saturate(160%);
@@ -65,4 +68,32 @@
 .hw-table tr:hover {
     background: rgba(160, 32, 240, 0.08);
     transition: background 0.3s ease;
+}
+
+@media (max-width: 1400px) {
+    .hw-container {
+        padding: 5px;
+    }
+
+    .hw-table {
+        min-width: 350px;
+    }
+
+    .hw-table th {
+        padding: 5px;
+        font-size: 10px;
+    }
+
+    .hw-table th:nth-child(2), .hw-table td:nth-child(2) {
+        max-width: 300px;
+    }
+
+    .hw-table td {
+        padding: 5px;
+        font-size: 9px;
+    }
+
+    .hw-table td:first-child, .hw-table td:last-child, .hw-table th:first-child, .hw-table th:last-child {
+        max-width: 40px;
+    }
 }
