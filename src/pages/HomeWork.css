@@ -13,7 +13,7 @@
     min-width: 600px;
     border-collapse: collapse;
     background: rgba(255, 255, 255, 0.04); /* полупрозрачность */
-    backdrop-filter: blur(12px) saturate(160%);
+    backdrop-filter: blur(12px) saturate(60%);
     -webkit-backdrop-filter: blur(12px) saturate(160%);
     border-radius: 16px;
     overflow: hidden;
@@ -68,6 +68,23 @@
 .hw-table tr:hover {
     background: rgba(160, 32, 240, 0.08);
     transition: background 0.3s ease;
+}
+
+.hw-logo-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.hw-logo {
+    display: inline-block;
+    width: 350px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(160, 32, 240, 0.4);
 }
 
 @media (max-width: 1400px) {

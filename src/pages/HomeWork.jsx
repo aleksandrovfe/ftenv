@@ -2,34 +2,43 @@ import tasks from "../tasks.json";
 import remarkGfm from 'remark-gfm';
 import Markdown from "react-markdown";
 import "./HomeWork.css";
+import logoFt from "/public/logo-ft.jpg"; // <-- adjust path if needed
 
 export const HomeWork = () => {
   const filterDates = (tasks) => {
+    // Получаем дату из URL (?date=YYYY-MM-DD)
+    const searchParams = new URLSearchParams(window.location.search);
+    const dateFromUrl = searchParams.get("date");
+
+    // Если нет даты — берем сегодняшнюю
+    const startDate = dateFromUrl ? new Date(dateFromUrl) : new Date();
+    startDate.setHours(0, 0, 0, 0);
+
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    // Фильтруем строки по дате открытия
-    return tasks.filter(row => {
-      // Предполагаем, что row.openDate — это строка даты в формате 'YYYY-MM-DD' или Date-объект
-      const openDate = new Date(row.dateOpen);
+    return tasks.filter((row, index) => {
+      // Каждое задание открывается с шагом 7 дней от стартовой даты
+      const openDate = new Date(startDate);
+      openDate.setDate(openDate.getDate() + index * 7); // +7 дней на каждое следующее задание
       openDate.setHours(0, 0, 0, 0);
 
-      // Возвращаем только те строки, где дата открытия меньше или равна сегодняшней дате
-
-      console.log('openDate', openDate)
-      console.log('today', today)
       return openDate <= today;
     });
-  }
+  };
 
   return (
     <div className="hw-container">
+      {/* Logo now part of content flow */}
+      <div className="hw-logo-wrapper">
+        <img src={logoFt} alt="Logo FT" className="hw-logo" />
+      </div>
+
       <table className="hw-table">
         <thead>
         <tr>
           <th>Тема</th>
           <th>Задание</th>
-          <th>Дата открытия</th>
         </tr>
         </thead>
         <tbody>
@@ -41,7 +50,6 @@ export const HomeWork = () => {
                 <Markdown remarkPlugins={[remarkGfm]}>{row.job}</Markdown>
               </div>
             </td>
-            <td className="hw-date">{row.dateOpen}</td>
           </tr>
         ))}
         </tbody>

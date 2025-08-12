@@ -2,7 +2,6 @@
     --ft-dark: #0b0710;
     --ft-primary: #A020F0;
     --ft-accent: #FF00FF;
-    --ft-logo: url("/logo-ft.jpg"); /* путь к твоей картинке */
 }
 
 .app-bg {
@@ -45,7 +44,6 @@
     content: "";
     position: absolute;
     inset: 0;
-    background-image: var(--ft-logo);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 400px;
